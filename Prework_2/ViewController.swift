@@ -16,6 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     let defaults = UserDefaults.standard
     
+    //adding some UIView rectangle
+    let firstView = UIView(frame: CGRect(x: 0, y: 600, width: 200, height: 200))
+    let secondView = UIView(frame: CGRect(x: 200, y: 600, width: 200, height: 200))
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,6 +31,20 @@ class ViewController: UIViewController {
         UserDefaults.standard.register(defaults: ["tipOne" : 15])
         UserDefaults.standard.register(defaults: ["tipTwo" : 18])
         UserDefaults.standard.register(defaults: ["tipThree" : 20])
+        
+        //adding some UIView rectangle to test animation
+        self.firstView.backgroundColor = .red
+        view.addSubview(firstView)
+        self.secondView.backgroundColor = .blue
+        view.addSubview(secondView)
+        
+        self.firstView.alpha = 0
+        self.secondView.alpha = 1
+        UIView.animate(withDuration:5.0, animations: {
+            // This causes first view to fade in and second view to fade out
+            self.firstView.alpha = 1
+            self.secondView.alpha = 0
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +96,6 @@ class ViewController: UIViewController {
         //total amount
         totalLabel.text = String(format: "$%.2f", total)
     }
-    
+        
 }
 
